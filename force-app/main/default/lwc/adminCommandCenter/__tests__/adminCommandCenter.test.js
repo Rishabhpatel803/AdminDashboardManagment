@@ -34,6 +34,23 @@ const SECTIONS = [
 /** A minimal but shape-complete payload, mirroring AccModel.Payload. */
 function samplePayload() {
   return {
+    visibility: {
+      pageHeader: true,
+      instanceHealth: true,
+      usersAccess: true,
+      licenseOverview: true,
+      securityHealth: true,
+      automationOverview: true,
+      integrationMonitoring: true,
+      apiLimits: true,
+      deployments: true,
+      codeHealth: true,
+      dataOverview: true,
+      criticalAlerts: true,
+      adminActivity: true,
+      quickActions: true,
+      footer: true
+    },
     meta: {
       demoMode: false,
       lastUpdatedLabel: "Last Updated: test",
@@ -187,6 +204,18 @@ describe("page composition once loaded", () => {
     const root = (await renderLoaded()).shadowRoot;
     SECTIONS.forEach((tag) => expect(root.querySelector(tag)).not.toBeNull());
     expect(SECTIONS).toHaveLength(13);
+  });
+
+  it("hides Users & Access when the setting disables it", async () => {
+    getDashboard.mockResolvedValue({
+      ...samplePayload(),
+      visibility: { ...samplePayload().visibility, usersAccess: false }
+    });
+    const root = (await render()).shadowRoot;
+    await flushPromises();
+
+    expect(root.querySelector("c-acc-users-access")).toBeNull();
+    expect(root.querySelector("c-acc-license-overview")).not.toBeNull();
   });
 
   it("renders the page header and footer, driven by the fetched payload", async () => {

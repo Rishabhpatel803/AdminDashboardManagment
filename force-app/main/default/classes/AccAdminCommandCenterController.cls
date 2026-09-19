@@ -13,6 +13,43 @@ public with sharing class AccAdminCommandCenterController {
   @AuraEnabled
   public static AccModel.Payload getDashboard() {
     AccModel.Payload payload = new AccModel.Payload();
+    for (AccDashboardSettings__mdt setting : [
+      SELECT DeveloperName, Visible__c
+      FROM AccDashboardSettings__mdt
+    ]) {
+      Boolean visible = setting.Visible__c == null || setting.Visible__c;
+      if (setting.DeveloperName == 'PageHeader') {
+        payload.visibility.pageHeader = visible;
+      } else if (setting.DeveloperName == 'InstanceHealth') {
+        payload.visibility.instanceHealth = visible;
+      } else if (setting.DeveloperName == 'UsersAccess') {
+        payload.visibility.usersAccess = visible;
+      } else if (setting.DeveloperName == 'LicenseOverview') {
+        payload.visibility.licenseOverview = visible;
+      } else if (setting.DeveloperName == 'SecurityHealth') {
+        payload.visibility.securityHealth = visible;
+      } else if (setting.DeveloperName == 'AutomationOverview') {
+        payload.visibility.automationOverview = visible;
+      } else if (setting.DeveloperName == 'IntegrationMonitoring') {
+        payload.visibility.integrationMonitoring = visible;
+      } else if (setting.DeveloperName == 'ApiLimits') {
+        payload.visibility.apiLimits = visible;
+      } else if (setting.DeveloperName == 'Deployments') {
+        payload.visibility.deployments = visible;
+      } else if (setting.DeveloperName == 'CodeHealth') {
+        payload.visibility.codeHealth = visible;
+      } else if (setting.DeveloperName == 'DataOverview') {
+        payload.visibility.dataOverview = visible;
+      } else if (setting.DeveloperName == 'CriticalAlerts') {
+        payload.visibility.criticalAlerts = visible;
+      } else if (setting.DeveloperName == 'AdminActivity') {
+        payload.visibility.adminActivity = visible;
+      } else if (setting.DeveloperName == 'QuickActions') {
+        payload.visibility.quickActions = visible;
+      } else if (setting.DeveloperName == 'Footer') {
+        payload.visibility.footer = visible;
+      }
+    }
 
     payload.meta.demoMode = false;
     Datetime now = Datetime.now();

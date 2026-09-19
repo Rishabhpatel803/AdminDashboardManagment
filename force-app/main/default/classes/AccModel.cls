@@ -528,9 +528,44 @@ public with sharing class AccModel {
    * Root payload
    * ========================================================================== */
 
+  public class Visibility {
+    @AuraEnabled
+    public Boolean pageHeader = true;
+    @AuraEnabled
+    public Boolean instanceHealth = true;
+    @AuraEnabled
+    public Boolean usersAccess = true;
+    @AuraEnabled
+    public Boolean licenseOverview = true;
+    @AuraEnabled
+    public Boolean securityHealth = true;
+    @AuraEnabled
+    public Boolean automationOverview = true;
+    @AuraEnabled
+    public Boolean integrationMonitoring = true;
+    @AuraEnabled
+    public Boolean apiLimits = true;
+    @AuraEnabled
+    public Boolean deployments = true;
+    @AuraEnabled
+    public Boolean codeHealth = true;
+    @AuraEnabled
+    public Boolean dataOverview = true;
+    @AuraEnabled
+    public Boolean criticalAlerts = true;
+    @AuraEnabled
+    public Boolean adminActivity = true;
+    @AuraEnabled
+    public Boolean quickActions = true;
+    @AuraEnabled
+    public Boolean footer = true;
+  }
+
   public class Payload {
     @AuraEnabled
     public Meta meta = new Meta();
+    @AuraEnabled
+    public Visibility visibility = new Visibility();
     @AuraEnabled
     public OrgInfo org;
     @AuraEnabled
