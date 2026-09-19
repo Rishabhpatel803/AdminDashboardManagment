@@ -1,0 +1,68 @@
+@import "c/accStyles";
+
+.auto {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(175px, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.auto__table-wrap {
+  border: 1px solid var(--acc-border);
+  border-radius: var(--acc-radius-sm);
+  overflow: hidden;
+}
+
+.auto__errors {
+  font-weight: 700;
+}
+
+.auto__panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.auto__panel-icon {
+  --sds-c-icon-color-foreground-default: #0176d3;
+}
+
+.auto__panel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex: 1;
+  gap: 4px;
+}
+
+.auto__panel-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auto__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.auto__panel-label {
+  font-size: 11px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .auto {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

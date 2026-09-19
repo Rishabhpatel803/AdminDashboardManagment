@@ -1,0 +1,55 @@
+<template>
+  <c-acc-card number="2" card-title="Users &amp; Access Overview">
+    <div class="users">
+      <div class="users__kpis">
+        <template for:each={kpis} for:item="kpi">
+          <div key={kpi.id} class={kpi.cardClass} title={kpi.tooltip}>
+            <span class="kpi__badge" style={kpi.badgeStyle}>
+              <lightning-icon
+                icon-name={kpi.icon}
+                size="xx-small"
+                alternative-text={kpi.label}
+                style={kpi.iconStyle}
+              ></lightning-icon>
+            </span>
+            <div class="kpi__text">
+              <span class={kpi.valueClass}>{kpi.value}</span>
+              <span class="kpi__label">{kpi.label}</span>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <div class="acc-panel acc-panel--critical users__alerts">
+        <p class="acc-panel__title">
+          <lightning-icon
+            icon-name="utility:warning"
+            size="xx-small"
+            alternative-text="Alerts"
+            class="users__alerts-icon"
+          ></lightning-icon>
+          <span class="acc-t-critical">Admin Alerts</span>
+        </p>
+
+        <ul class="users__alert-list">
+          <template for:each={alerts} for:item="alert">
+            <li key={alert.id} class="users__alert" title={alert.tooltip}>
+              <lightning-icon
+                icon-name="utility:user"
+                size="xx-small"
+                alternative-text={alert.label}
+                class="users__alert-icon"
+              ></lightning-icon>
+              <span class={alert.countClass}>{alert.value}</span>
+              <span class="users__alert-label">{alert.label}</span>
+            </li>
+          </template>
+        </ul>
+
+        <div class="users__alert-foot">
+          <a href="#" class="acc-link" onclick={handleViewAll}>View All</a>
+        </div>
+      </div>
+    </div>
+  </c-acc-card>
+</template>

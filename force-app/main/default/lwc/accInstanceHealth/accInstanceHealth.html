@@ -1,0 +1,58 @@
+<template>
+  <c-acc-card
+    number="1"
+    card-title="Instance Health &amp; Organization Information"
+  >
+    <div class="org">
+      <c-acc-cloud-mark size="40" class="org__logo"></c-acc-cloud-mark>
+
+      <div class="org__blocks">
+        <template for:each={blocks} for:item="block">
+          <div key={block.id} class="org__block">
+            <span class="acc-label">{block.label}</span>
+
+            <template lwc:if={block.status}>
+              <c-acc-status-indicator
+                status={block.status}
+                label={block.value}
+                variant="dot"
+                color-label
+              ></c-acc-status-indicator>
+            </template>
+
+            <template lwc:elseif={block.icon}>
+              <c-acc-status-indicator
+                status={block.iconStatus}
+                label={block.value}
+                variant="icon"
+                icon-name={block.icon}
+                icon-size="xx-small"
+              ></c-acc-status-indicator>
+            </template>
+
+            <template lwc:elseif={block.href}>
+              <a
+                class="org__url"
+                href={block.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="org__url-text">{block.value}</span>
+                <lightning-icon
+                  icon-name="utility:new_window"
+                  size="xx-small"
+                  alternative-text="Opens in a new tab"
+                  class="org__url-icon"
+                ></lightning-icon>
+              </a>
+            </template>
+
+            <template lwc:else>
+              <span class="org__value">{block.value}</span>
+            </template>
+          </div>
+        </template>
+      </div>
+    </div>
+  </c-acc-card>
+</template>

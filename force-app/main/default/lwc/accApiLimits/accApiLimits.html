@@ -1,0 +1,53 @@
+<template>
+  <c-acc-card number="7" card-title="API &amp; System Limits">
+    <template lwc:if={isUnavailable}>
+      <div class="acc-banner">
+        <lightning-icon
+          icon-name="utility:info"
+          size="x-small"
+          alternative-text="Data Unavailable"
+        ></lightning-icon>
+        <div>
+          <p class="acc-banner__title">Data Unavailable</p>
+          <p class="acc-banner__text">{unavailableReason}</p>
+        </div>
+      </div>
+    </template>
+
+    <template lwc:else>
+      <div class="lim">
+        <div class="lim__meters">
+          <template for:each={meters} for:item="meter">
+            <c-acc-meter
+              key={meter.id}
+              label={meter.label}
+              usage={meter.usage}
+              usage-label={meter.usageLabel}
+              status={meter.status}
+              counts={meter.counts}
+              tooltip={meter.tooltip}
+              class="lim__meter"
+            ></c-acc-meter>
+          </template>
+        </div>
+
+        <div class="acc-panel">
+          <p class="acc-panel__title">Limit Status</p>
+          <ul class="lim__status">
+            <template for:each={panel} for:item="row">
+              <li key={row.id} class="lim__status-row" title={row.tooltip}>
+                <c-acc-status-indicator
+                  status={row.status}
+                  label={row.label}
+                  variant="icon"
+                  icon-name="utility:check"
+                ></c-acc-status-indicator>
+                <span class={row.valueClass}>{row.statusLabel}</span>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
+    </template>
+  </c-acc-card>
+</template>

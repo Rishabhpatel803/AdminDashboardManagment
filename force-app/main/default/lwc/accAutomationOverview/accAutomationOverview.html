@@ -1,0 +1,71 @@
+<template>
+  <c-acc-card number="5" card-title="Automation Overview">
+    <template lwc:if={isUnavailable}>
+      <div class="acc-banner">
+        <lightning-icon
+          icon-name="utility:info"
+          size="x-small"
+          alternative-text="Data Unavailable"
+        ></lightning-icon>
+        <div>
+          <p class="acc-banner__title">Data Unavailable</p>
+          <p class="acc-banner__text">{unavailableReason}</p>
+        </div>
+      </div>
+    </template>
+
+    <template lwc:else>
+      <div class="auto">
+        <div class="auto__table-wrap">
+          <table class="acc-table">
+            <thead>
+              <tr>
+                <th scope="col">Component</th>
+                <th scope="col" class="acc-table__num">Total</th>
+                <th scope="col" class="acc-table__num">Active</th>
+                <th scope="col" class="acc-table__num">Errors</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template for:each={rows} for:item="row">
+                <tr key={row.id}>
+                  <td class="acc-table__name">{row.label}</td>
+                  <td class="acc-table__num">{row.total}</td>
+                  <td class="acc-table__num">{row.active}</td>
+                  <td class={row.errorClass}>{row.errors}</td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="acc-panel auto__panel">
+          <p class="acc-panel__title">
+            <lightning-icon
+              icon-name="utility:flow"
+              size="xx-small"
+              alternative-text="Automation"
+              class="auto__panel-icon"
+            ></lightning-icon>
+            <span>Automation Status</span>
+          </p>
+          <ul class="auto__panel-list">
+            <template for:each={panel} for:item="item">
+              <li key={item.id} class="auto__panel-row">
+                <span class="auto__badge" style={item.badgeStyle}>
+                  <lightning-icon
+                    icon-name={item.icon}
+                    size="xx-small"
+                    alternative-text={item.label}
+                    style={item.iconStyle}
+                  ></lightning-icon>
+                </span>
+                <span class={item.labelClass}>{item.label}</span>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
+    </template>
+  </c-acc-card>
+</template>

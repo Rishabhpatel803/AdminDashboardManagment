@@ -1,0 +1,50 @@
+<template>
+  <c-acc-card number="3" card-title="License Overview">
+    <template lwc:if={isUnavailable}>
+      <div class="acc-banner">
+        <lightning-icon
+          icon-name="utility:info"
+          size="x-small"
+          alternative-text="Data Unavailable"
+        ></lightning-icon>
+        <div>
+          <p class="acc-banner__title">Data Unavailable</p>
+          <p class="acc-banner__text">{unavailableReason}</p>
+        </div>
+      </div>
+    </template>
+
+    <template lwc:else>
+      <div class="lic">
+        <c-acc-donut
+          value={donut.value}
+          value-label={donut.label}
+          sublabel={donut.sublabel}
+          status={donut.status}
+          tooltip={donut.tooltip}
+          size="112"
+          thickness="15"
+        ></c-acc-donut>
+
+        <div class="lic__detail">
+          <span class="lic__caption">Salesforce License Utilization</span>
+          <span class="lic__name">{primaryName}</span>
+          <span class="lic__count acc-tabular">{primaryCountLabel}</span>
+          <span class="lic__available acc-tabular"
+            >{primaryAvailableLabel}</span
+          >
+
+          <ul class="lic__rows">
+            <template for:each={supporting} for:item="row">
+              <li key={row.id} class="lic__row" title={row.tooltip}>
+                <span class="lic__bar" style={row.barStyle}></span>
+                <span class="lic__row-label">{row.label}</span>
+                <span class="lic__row-value acc-tabular">{row.value}</span>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
+    </template>
+  </c-acc-card>
+</template>

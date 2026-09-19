@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>false</isExposed>
+    <masterLabel>Admin Command Center Shared Styles</masterLabel>
+    <description
+  >CSS-only module holding the shared design tokens and style primitives. Imported by every acc* component with `@import 'c/accStyles';`.</description>
+</LightningComponentBundle>

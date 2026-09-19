@@ -1,0 +1,71 @@
+@import "c/accStyles";
+
+.code {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.code__chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  max-width: 130px;
+  text-align: center;
+}
+
+.code__note {
+  margin: 0;
+  font-size: 9px;
+  color: var(--acc-ink-muted);
+  line-height: 1.3;
+}
+
+.code__rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.code__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid #f0f3f7;
+}
+
+.code__row:last-child {
+  border-bottom: none;
+}
+
+.code__row-label {
+  font-size: 10.5px;
+  color: var(--acc-ink-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.code__row-value {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--acc-ink);
+  flex: 0 0 auto;
+}
+
+@media (max-width: 560px) {
+  .code {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .code__chart {
+    align-self: center;
+  }
+}

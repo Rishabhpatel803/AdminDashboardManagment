@@ -1,0 +1,46 @@
+<template>
+  <c-acc-card
+    number="11"
+    card-title="Critical Alerts Center"
+    icon-name="utility:warning"
+    icon-status="critical"
+    variant="critical"
+  >
+    <a slot="actions" href="#" class="acc-link" onclick={handleViewAll}
+      >View All</a
+    >
+
+    <template lwc:if={hasAlerts}>
+      <ul class="alerts">
+        <template for:each={rows} for:item="alert">
+          <li key={alert.id} class="alerts__row" title={alert.tooltip}>
+            <lightning-icon
+              icon-name={alert.icon}
+              size="xx-small"
+              alternative-text={alert.severityLabel}
+              style={alert.iconStyle}
+              class="alerts__icon"
+            ></lightning-icon>
+
+            <div class="alerts__text">
+              <span class="alerts__title">{alert.title}</span>
+              <span class="alerts__meta">{alert.meta}</span>
+            </div>
+
+            <c-acc-status-indicator
+              status={alert.severity}
+              label={alert.severityLabel}
+              variant="pill"
+            ></c-acc-status-indicator>
+          </li>
+        </template>
+      </ul>
+    </template>
+    <template lwc:else>
+      <p class="alerts__empty">
+        No active alerts. All monitored components are within their healthy
+        thresholds.
+      </p>
+    </template>
+  </c-acc-card>
+</template>

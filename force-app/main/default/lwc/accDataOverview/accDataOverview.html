@@ -1,0 +1,114 @@
+<template>
+  <c-acc-card number="10" card-title="Data Overview">
+    <div class="data">
+      <div class="acc-panel data__total">
+        <p class="acc-panel__title">
+          <lightning-icon
+            icon-name="utility:database"
+            size="xx-small"
+            alternative-text="Records"
+            class="data__total-icon"
+          ></lightning-icon>
+          <span>Total Records</span>
+        </p>
+        <span class="data__total-value">{totalRecords}</span>
+        <template lwc:if={growthUnavailable}>
+          <span class="data__growth acc-unavailable">{growthLabel}</span>
+        </template>
+        <template lwc:else>
+          <span class={growthClass}>{growthLabel}</span>
+        </template>
+      </div>
+
+      <div class="acc-panel data__objects">
+        <p class="acc-panel__title">Largest Objects</p>
+        <table class="acc-table">
+          <thead>
+            <tr>
+              <th scope="col">Object</th>
+              <th scope="col" class="acc-table__num">Records</th>
+              <th scope="col" class="acc-table__num">Storage Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template for:each={objects} for:item="obj">
+              <tr key={obj.id} title={obj.tooltip}>
+                <td class="acc-table__name">{obj.name}</td>
+                <td class="acc-table__num data__records">
+                  <span class="data__bar" style={obj.barStyle}>
+                    <span class="data__bar-text acc-tabular"
+                      >{obj.records}</span
+                    >
+                  </span>
+                </td>
+                <td class="acc-table__num">
+                  <span class={obj.impactClass}>{obj.impact}</span>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="acc-panel data__storage">
+        <p class="acc-panel__title">Storage Usage</p>
+        <template lwc:if={storageUnavailable}>
+          <div class="acc-banner">
+            <lightning-icon
+              icon-name="utility:info"
+              size="x-small"
+              alternative-text="Data Unavailable"
+            ></lightning-icon>
+            <div>
+              <p class="acc-banner__title">Data Unavailable</p>
+              <p class="acc-banner__text">
+                Storage limits were not reported by OrgLimits for this org.
+              </p>
+            </div>
+          </div>
+        </template>
+        <template lwc:else>
+          <div class="data__meters">
+            <template for:each={storageMeters} for:item="meter">
+              <c-acc-meter
+                key={meter.id}
+                label={meter.label}
+                usage={meter.usage}
+                usage-label={meter.usageLabel}
+                status={meter.status}
+                detail={meter.detail}
+                tooltip={meter.tooltip}
+              ></c-acc-meter>
+            </template>
+          </div>
+          <div class="data__totals">
+            <template for:each={storageTotals} for:item="total">
+              <div key={total.id} class="data__total-block">
+                <span class="acc-label">{total.label}</span>
+                <span class="data__total-block-value">{total.value}</span>
+              </div>
+            </template>
+          </div>
+        </template>
+      </div>
+
+      <div class="acc-panel data__activity">
+        <p class="acc-panel__title">Records Activity</p>
+        <ul class="data__activity-list">
+          <template for:each={activity} for:item="row">
+            <li key={row.id} class="data__activity-row" title={row.tooltip}>
+              <lightning-icon
+                icon-name={row.icon}
+                size="xx-small"
+                alternative-text={row.label}
+                class="data__activity-icon"
+              ></lightning-icon>
+              <span class="data__activity-label">{row.label}</span>
+              <span class={row.valueClass}>{row.value}</span>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </div>
+  </c-acc-card>
+</template>

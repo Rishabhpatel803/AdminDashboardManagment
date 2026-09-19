@@ -1,0 +1,36 @@
+@import "c/accStyles";
+
+.dep {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+
+.dep__footer {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.dep__block {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 7px 9px;
+  border: 1px solid var(--acc-border);
+  border-radius: var(--acc-radius-sm);
+  min-width: 0;
+}
+
+.dep__block-value {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--acc-ink);
+}
+
+@media (max-width: 600px) {
+  .dep__footer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

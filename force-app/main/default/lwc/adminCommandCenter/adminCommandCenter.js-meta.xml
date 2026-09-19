@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Salesforce Admin Command Center</masterLabel>
+    <description
+  >360-degree administrative overview of a Salesforce instance: health, users, licenses, security, automation, integrations, limits, deployments, code health, data, alerts and recent admin activity. Data is fetched live from AccAdminCommandCenterController.</description>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__Tab</target>
+    </targets>
+</LightningComponentBundle>

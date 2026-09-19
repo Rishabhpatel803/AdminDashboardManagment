@@ -1,0 +1,87 @@
+<template>
+  <c-acc-card number="6" card-title="Integration Monitoring">
+    <div class="int">
+      <div class="int__systems">
+        <p class="int__caption">Connected Systems</p>
+        <template lwc:if={systemsUnavailable}>
+          <div class="acc-banner">
+            <lightning-icon
+              icon-name="utility:info"
+              size="x-small"
+              alternative-text="Data Unavailable"
+            ></lightning-icon>
+            <div>
+              <p class="acc-banner__title">Data Unavailable</p>
+              <p class="acc-banner__text">{systemsUnavailableReason}</p>
+            </div>
+          </div>
+        </template>
+        <template lwc:else>
+          <div class="int__cards">
+            <template for:each={systems} for:item="system">
+              <div key={system.id} class="sys" title={system.tooltip}>
+                <lightning-icon
+                  icon-name={system.icon}
+                  size="small"
+                  alternative-text={system.name}
+                  style={system.iconStyle}
+                  class="sys__icon"
+                ></lightning-icon>
+                <span class="sys__name">{system.name}</span>
+                <c-acc-status-indicator
+                  status={system.status}
+                  label={system.statusLabel}
+                  variant="dot"
+                  color-label
+                ></c-acc-status-indicator>
+              </div>
+            </template>
+          </div>
+        </template>
+      </div>
+
+      <div class="acc-panel">
+        <p class="acc-panel__title">Integration Details</p>
+        <ul class="int__details">
+          <template for:each={details} for:item="row">
+            <li key={row.id} class="int__detail" title={row.tooltip}>
+              <c-acc-status-indicator
+                status={row.status}
+                label={row.label}
+                variant="dot"
+              ></c-acc-status-indicator>
+              <span class={row.valueClass}>{row.value}</span>
+            </li>
+          </template>
+        </ul>
+      </div>
+
+      <div class="acc-panel">
+        <p class="acc-panel__title">
+          <lightning-icon
+            icon-name="utility:metrics"
+            size="xx-small"
+            alternative-text="Integration health"
+            class="int__health-icon"
+          ></lightning-icon>
+          <span>Integration Health</span>
+        </p>
+        <div class="int__health">
+          <c-acc-donut
+            value={donut.value}
+            value-label={donut.label}
+            sublabel={donut.sublabel}
+            status={donut.status}
+            tooltip={donut.tooltip}
+            size="98"
+            thickness="13"
+          ></c-acc-donut>
+          <p class="int__health-note">
+            Live reachability requires an outbound health check per endpoint,
+            which this page does not perform.
+          </p>
+        </div>
+      </div>
+    </div>
+  </c-acc-card>
+</template>

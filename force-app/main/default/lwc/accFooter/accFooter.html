@@ -1,0 +1,20 @@
+<template>
+  <footer class="foot">
+    <div class="foot__brand">
+      <c-acc-cloud-mark size="22"></c-acc-cloud-mark>
+      <span class="foot__name">Salesforce Admin Command Center</span>
+      <span class="foot__sep" aria-hidden="true">|</span>
+      <span class="foot__meta">{buildLabel}</span>
+      <span class="foot__sep" aria-hidden="true">|</span>
+      <span class="foot__meta">Powered by Salesforce</span>
+    </div>
+
+    <nav class="foot__links" aria-label="Support links">
+      <template for:each={links} for:item="link">
+        <a key={link.id} href="#" class="acc-link" onclick={handleInert}
+          >{link.label}</a
+        >
+      </template>
+    </nav>
+  </footer>
+</template>

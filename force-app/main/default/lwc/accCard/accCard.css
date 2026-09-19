@@ -1,0 +1,17 @@
+@import "c/accStyles";
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.acc-card__body {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Section 11 - light red/orange warning wash. */
+.acc-card--alert {
+  background: linear-gradient(180deg, #fef4f4 0%, #fff9f4 100%);
+  border-color: #f7d9d9;
+}

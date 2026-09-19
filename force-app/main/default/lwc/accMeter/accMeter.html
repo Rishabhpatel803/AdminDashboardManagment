@@ -1,0 +1,25 @@
+<template>
+  <div class="meter" title={tooltip}>
+    <div class="meter__head">
+      <span class="meter__label">{label}</span>
+      <span class="meter__pct acc-tabular">{displayPercent}</span>
+    </div>
+    <template lwc:if={counts}>
+      <div class="meter__counts acc-tabular">{counts}</div>
+    </template>
+    <div
+      class="meter__track"
+      style={trackStyle}
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow={clamped}
+      aria-label={label}
+    >
+      <div class="meter__fill" style={fillStyle}></div>
+    </div>
+    <template lwc:if={detail}>
+      <div class="meter__detail">{detail}</div>
+    </template>
+  </div>
+</template>

@@ -1,0 +1,29 @@
+<template>
+  <c-acc-card number="9" card-title="Apex &amp; Code Health">
+    <div class="code">
+      <div class="code__chart">
+        <c-acc-donut
+          value={donut.value}
+          value-label={donut.label}
+          sublabel={donut.sublabel}
+          status={donut.status}
+          tooltip={donut.tooltip}
+          size="104"
+          thickness="14"
+        ></c-acc-donut>
+        <template lwc:if={coverageUnavailable}>
+          <p class="code__note">{coverageUnavailableReason}</p>
+        </template>
+      </div>
+
+      <ul class="code__rows">
+        <template for:each={rows} for:item="row">
+          <li key={row.id} class="code__row">
+            <span class="code__row-label">{row.label}</span>
+            <span class={row.valueClass}>{row.value}</span>
+          </li>
+        </template>
+      </ul>
+    </div>
+  </c-acc-card>
+</template>

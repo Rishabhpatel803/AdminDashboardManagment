@@ -1,0 +1,97 @@
+<template>
+  <main class="shell" aria-label="Salesforce Admin Command Center">
+    <template lwc:if={isLoading}>
+      <div class="acc-state">
+        <lightning-spinner
+          alternative-text="Loading Admin Command Center"
+          size="large"
+        ></lightning-spinner>
+      </div>
+    </template>
+
+    <template lwc:elseif={hasError}>
+      <div class="acc-state acc-state--error">
+        <lightning-icon
+          icon-name="utility:error"
+          size="medium"
+          variant="error"
+          alternative-text="Data Unavailable"
+        ></lightning-icon>
+        <h2 class="acc-state__title">Data Unavailable</h2>
+        <p class="acc-state__message">{errorMessage}</p>
+        <button class="acc-link" onclick={handleRetry}>Retry</button>
+      </div>
+    </template>
+
+    <template lwc:elseif={hasData}>
+      <span class="acc-sr-only">{summary}</span>
+
+      <div class="grid">
+        <c-acc-page-header
+          org={payload.org}
+          health={payload.health}
+          meta={payload.meta}
+          class="col-12"
+        ></c-acc-page-header>
+
+        <c-acc-instance-health
+          org={payload.org}
+          class="col-12"
+        ></c-acc-instance-health>
+
+        <c-acc-users-access
+          data={payload.users}
+          class="col-8"
+        ></c-acc-users-access>
+        <c-acc-license-overview
+          data={payload.licenses}
+          class="col-4"
+        ></c-acc-license-overview>
+
+        <c-acc-security-health
+          data={payload.security}
+          class="col-6"
+        ></c-acc-security-health>
+        <c-acc-automation-overview
+          data={payload.automation}
+          class="col-6"
+        ></c-acc-automation-overview>
+
+        <c-acc-integration-monitoring
+          data={payload.integrations}
+          class="col-12"
+        ></c-acc-integration-monitoring>
+
+        <c-acc-api-limits
+          data={payload.limits}
+          class="col-4"
+        ></c-acc-api-limits>
+        <c-acc-deployments
+          data={payload.deployments}
+          class="col-4"
+        ></c-acc-deployments>
+        <c-acc-code-health
+          data={payload.code}
+          class="col-4"
+        ></c-acc-code-health>
+
+        <c-acc-data-overview
+          data={payload.dataOverview}
+          class="col-12"
+        ></c-acc-data-overview>
+
+        <c-acc-critical-alerts
+          alerts={payload.alerts}
+          class="col-4"
+        ></c-acc-critical-alerts>
+        <c-acc-admin-activity
+          activity={payload.activity}
+          class="col-4"
+        ></c-acc-admin-activity>
+        <c-acc-quick-actions class="col-4"></c-acc-quick-actions>
+
+        <c-acc-footer org={payload.org} class="col-12"></c-acc-footer>
+      </div>
+    </template>
+  </main>
+</template>

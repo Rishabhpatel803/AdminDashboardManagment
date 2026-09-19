@@ -1,0 +1,23 @@
+<template>
+  <article class={cardClass}>
+    <div class="acc-card__head">
+      <template lwc:if={number}>
+        <span class="acc-chip">{number}</span>
+      </template>
+      <template lwc:if={iconName}>
+        <lightning-icon
+          icon-name={iconName}
+          size="xx-small"
+          alternative-text={cardTitle}
+          style={iconStyle}
+        ></lightning-icon>
+      </template>
+      <h2 class={titleClass}>{cardTitle}</h2>
+      <div class="acc-card__spacer"></div>
+      <slot name="actions"></slot>
+    </div>
+    <div class="acc-card__body">
+      <slot></slot>
+    </div>
+  </article>
+</template>

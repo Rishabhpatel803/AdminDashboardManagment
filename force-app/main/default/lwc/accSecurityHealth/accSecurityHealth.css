@@ -1,0 +1,136 @@
+@import "c/accStyles";
+
+.sec {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sec__metrics {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  padding: 7px 8px;
+  border: 1px solid var(--acc-border);
+  border-radius: var(--acc-radius-sm);
+  min-width: 0;
+  min-height: 52px;
+}
+
+.metric__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+}
+
+.metric__icon {
+  --sds-c-icon-color-foreground-default: #0176d3;
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+.metric__label {
+  font-size: 8.5px;
+  color: var(--acc-ink-muted);
+  line-height: 1.25;
+}
+
+.metric__value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--acc-ink);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.sec__panels {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 10px;
+  align-items: stretch;
+}
+
+.sec__alerts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sec__alert {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 0;
+  border-bottom: 1px solid #f0f3f7;
+}
+
+.sec__alert:last-child {
+  border-bottom: none;
+}
+
+.sec__alert-icon {
+  --sds-c-icon-color-foreground-default: #ea001e;
+  flex: 0 0 auto;
+}
+
+.sec__alert-label {
+  flex: 1;
+  font-size: 10.5px;
+  color: var(--acc-ink-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sec__alert-count {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--acc-ink);
+  flex: 0 0 auto;
+}
+
+.sec__health {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sec__subsystems {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.sec__subsystem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+@media (max-width: 1300px) {
+  .sec__metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .sec__panels {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sec__metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

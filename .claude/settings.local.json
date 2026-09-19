@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npm run test:unit 2>&1)",
+      "PowerShell(sf org list --json 2>&1)",
+      "PowerShell(sf config get target-org 2>&1)",
+      "PowerShell(sf project deploy start -d force-app --dry-run --ignore-conflicts 2>&1)",
+      "PowerShell(sf project deploy start -d force-app --ignore-conflicts 2>&1)",
+      "PowerShell($r = sf project deploy report --json 2>&1 | ConvertFrom-Json; $res = $r.result; Write-Output \"status:    $\\($res.status\\)\"; Write-Output \"success:   $\\($res.success\\)\"; Write-Output \"components:$\\($res.numberComponentsDeployed\\)/$\\($res.numberComponentsTotal\\)\"; Write-Output \"errors:    $\\($res.numberComponentErrors\\)\"; if \\($res.details.componentFailures\\) { Write-Output \"--- FAILURES ---\"; $res.details.componentFailures | ForEach-Object { Write-Output \"$\\($_.fullName\\): $\\($_.problem\\)\" } })",
+      "PowerShell(Get-ChildItem \"force-app\\\\main\\\\default\\\\lwc\" -Directory | ForEach-Object { $count = \\(Get-ChildItem $_.FullName -File\\).Count; \"$\\($_.Name\\): $count files\" })",
+      "PowerShell(Write-Output \"=== lwc dir ===\"; Get-ChildItem \"force-app\\\\main\\\\default\\\\lwc\" -Force; Write-Output \"`n=== classes dir ===\"; \\(Get-ChildItem \"force-app\\\\main\\\\default\\\\classes\" -Force -File\\).Count; Write-Output \"`n=== full force-app file count ===\"; \\(Get-ChildItem force-app -Recurse -File\\).Count)",
+      "PowerShell(sf project deploy start -d force-app --dry-run --ignore-conflicts --test-level RunLocalTests --json 2>&1 | Out-File -FilePath \"$env:TEMP\\\\deploy_result.json\" -Encoding utf8; $r = Get-Content \"$env:TEMP\\\\deploy_result.json\" -Raw | ConvertFrom-Json; $d = $r.result; Write-Output \"status: $\\($d.status\\)\"; Write-Output \"success: $\\($d.success\\)\"; Write-Output \"components: $\\($d.numberComponentsDeployed\\)/$\\($d.numberComponentsTotal\\), errors: $\\($d.numberComponentErrors\\)\"; Write-Output \"tests: $\\($d.numberTestsCompleted\\)/$\\($d.numberTestsTotal\\), failures: $\\($d.numberTestErrors\\)\"; if \\($d.details.runTestResult.codeCoverage\\) { $d.details.runTestResult.codeCoverage | ForEach-Object { \"$\\($_.name\\): $\\($_.numLocationsCovered\\)/\\($\\($_.numLocationsCovered\\)+$\\($_.numLocationsNotCovered\\)\\)\" } })",
+      "Bash(grep -n \"numberTestsCompleted\\\\|numberTestErrors\\\\|runTestResult\\\\|codeCoverage\\\\|numFailures\\\\|\\\\\"successes\\\\\"\\\\|\\\\\"failures\\\\\"\" \"/c/Users/2130486/.claude/projects/c--Users-2130486-OneDrive---Cognizant-Documents-DashboardManagement/908fee36-4433-4399-b2d6-2884d6a48735/tool-results/bxo9nrict.txt\" | head -50)",
+      "Read(//c/Users/2130486/.claude/projects/c--Users-2130486-OneDrive---Cognizant-Documents-DashboardManagement/908fee36-4433-4399-b2d6-2884d6a48735/tool-results/**)",
+      "PowerShell(sf project deploy start -d force-app --ignore-conflicts --test-level RunLocalTests --json 2>&1 | Out-File -FilePath \"$env:TEMP\\\\deploy_real.json\" -Encoding utf8; $r = Get-Content \"$env:TEMP\\\\deploy_real.json\" -Raw | ConvertFrom-Json; $d = $r.result; Write-Output \"status: $\\($d.status\\)\"; Write-Output \"success: $\\($d.success\\)\"; Write-Output \"components: $\\($d.numberComponentsDeployed\\)/$\\($d.numberComponentsTotal\\), errors: $\\($d.numberComponentErrors\\)\"; Write-Output \"tests: $\\($d.numberTestsCompleted\\)/$\\($d.numberTestsTotal\\), failures: $\\($d.numberTestErrors\\)\"; if \\($d.details.componentFailures\\) { $d.details.componentFailures | ForEach-Object { \"FAIL: $\\($_.fullName\\) - $\\($_.problem\\)\" } }; if \\($d.details.runTestResult.failures\\) { $d.details.runTestResult.failures | ForEach-Object { \"TEST FAIL: $\\($_.name\\).$\\($_.methodName\\) - $\\($_.message\\)\" } })",
+      "PowerShell(sf apex run test --class-names AccStatusTest,AccAdminCommandCenterControllerTest --result-format human --synchronous --code-coverage 2>&1)",
+      "PowerShell(sf apex run test --class-names AccStatusTest --class-names AccAdminCommandCenterControllerTest --result-format human --code-coverage --wait 10 2>&1)"
+    ]
+  }
+}

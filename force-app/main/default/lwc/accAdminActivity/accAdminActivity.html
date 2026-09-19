@@ -1,0 +1,37 @@
+<template>
+  <c-acc-card number="12" card-title="Recent Admin Activity">
+    <a slot="actions" href="#" class="acc-link" onclick={handleViewAll}
+      >View All</a
+    >
+
+    <template lwc:if={hasEntries}>
+      <ol class="tl">
+        <template for:each={entries} for:item="entry">
+          <li key={entry.id} class={entry.itemClass}>
+            <span class="tl__marker" style={entry.badgeStyle}>
+              <lightning-icon
+                icon-name={entry.icon}
+                size="xx-small"
+                alternative-text={entry.action}
+                style={entry.iconStyle}
+              ></lightning-icon>
+            </span>
+
+            <span class="tl__time acc-tabular">{entry.timeLabel}</span>
+
+            <div class="tl__text">
+              <span class="tl__action">{entry.action}</span>
+              <span class="tl__target">{entry.target}</span>
+            </div>
+          </li>
+        </template>
+      </ol>
+    </template>
+    <template lwc:else>
+      <p class="tl__empty">
+        Data Unavailable: SetupAuditTrail is not readable by this user, or no
+        recent activity was found.
+      </p>
+    </template>
+  </c-acc-card>
+</template>

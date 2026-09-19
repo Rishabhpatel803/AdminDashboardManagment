@@ -1,0 +1,116 @@
+@import "c/accStyles";
+
+/*
+ * Lightning Experience supplies the global header (cloud logo, global search,
+ * App Launcher, help, notifications, user avatar and the "System Admin" user
+ * menu) and the app navigation bar. This page therefore renders neither, so
+ * the chrome is never duplicated on top of the platform's own.
+ *
+ * The accTopBar and accSideNav components stay in the bundle for standalone
+ * and demo rendering outside Lightning Experience.
+ */
+
+:host {
+  display: block;
+  background: var(--acc-page);
+}
+
+.shell {
+  display: block;
+  padding: 12px;
+  box-sizing: border-box;
+  background: var(--acc-page);
+}
+
+/* ==========================================================================
+ * Responsive 12-column grid
+ * ========================================================================== */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 12px;
+  align-items: stretch;
+}
+
+.col-12 {
+  grid-column: span 12;
+}
+
+.col-8 {
+  grid-column: span 8;
+}
+
+.col-6 {
+  grid-column: span 6;
+}
+
+.col-4 {
+  grid-column: span 4;
+}
+
+/* Large laptop: let the three-up rows breathe as pairs. */
+@media (max-width: 1400px) {
+  .col-4 {
+    grid-column: span 6;
+  }
+
+  .col-8 {
+    grid-column: span 12;
+  }
+}
+
+/* Tablet: single column. */
+@media (max-width: 1024px) {
+  .col-8,
+  .col-6,
+  .col-4 {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 900px) {
+  .shell {
+    padding: 10px;
+  }
+
+  .grid {
+    gap: 10px;
+  }
+}
+
+/* ==========================================================================
+ * Loading / error states
+ * ========================================================================== */
+
+.acc-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 320px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.acc-state--error {
+  background: var(--acc-surface);
+  border: 1px solid var(--acc-border);
+  border-radius: var(--acc-radius);
+  box-shadow: var(--acc-shadow);
+}
+
+.acc-state__title {
+  margin: 4px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--acc-ink);
+}
+
+.acc-state__message {
+  margin: 0;
+  max-width: 480px;
+  font-size: 12px;
+  color: var(--acc-ink-secondary);
+}

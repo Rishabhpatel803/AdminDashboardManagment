@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RemoteSiteSetting xmlns="http://soap.sforce.com/2006/04/metadata">
+    <disableProtocolSecurity>false</disableProtocolSecurity>
+    <isActive>true</isActive>
+    <url>https://co1774945172414.my.salesforce.com</url>
+    <description
+    >Allows AccToolingService to self-call this org's own Tooling API (ApexOrgWideCoverage, DeployRequest) using the running user's session - needed because those objects are not exposed to plain Apex SOQL. This is this org's own domain, not a third party.</description>
+</RemoteSiteSetting>

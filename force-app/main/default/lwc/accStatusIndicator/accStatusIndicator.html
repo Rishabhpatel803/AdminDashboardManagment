@@ -1,0 +1,32 @@
+<template>
+  <template lwc:if={isPill}>
+    <span class="pill" style={pillStyle} title={tooltip}>
+      <lightning-icon
+        icon-name={resolvedIcon}
+        size="xx-small"
+        alternative-text={status}
+        style={iconStyle}
+      ></lightning-icon>
+      <span class="pill__label">{label}</span>
+    </span>
+  </template>
+
+  <template lwc:elseif={isIcon}>
+    <span class="ind" title={tooltip}>
+      <lightning-icon
+        icon-name={resolvedIcon}
+        size={iconSize}
+        alternative-text={status}
+        style={iconStyle}
+      ></lightning-icon>
+      <span class="ind__label" style={labelStyle}>{label}</span>
+    </span>
+  </template>
+
+  <template lwc:else>
+    <span class="ind" title={tooltip}>
+      <span class="ind__dot" style={dotStyle}></span>
+      <span class="ind__label" style={labelStyle}>{label}</span>
+    </span>
+  </template>
+</template>

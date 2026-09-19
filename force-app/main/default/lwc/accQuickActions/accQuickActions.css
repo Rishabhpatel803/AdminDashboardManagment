@@ -1,0 +1,60 @@
+@import "c/accStyles";
+
+.qa {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.qa__tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 6px;
+  border: 1px solid var(--acc-border);
+  border-radius: var(--acc-radius-sm);
+  background: var(--acc-surface);
+  text-decoration: none;
+  text-align: center;
+  min-width: 0;
+  transition:
+    box-shadow 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.qa__tile:hover {
+  border-color: var(--acc-brand);
+  box-shadow: var(--acc-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.qa__tile:focus-visible {
+  outline: 2px solid var(--acc-brand);
+  outline-offset: 1px;
+}
+
+.qa__label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--acc-ink-secondary);
+  line-height: 1.25;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qa__tile {
+    transition: none;
+  }
+
+  .qa__tile:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .qa {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

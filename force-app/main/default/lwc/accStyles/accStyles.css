@@ -1,0 +1,351 @@
+/**
+ * accStyles - shared CSS module for the Admin Command Center.
+ *
+ * LWC shadow DOM stops styles cascading from the page into a component, so
+ * every acc* component imports this module (`@import 'c/accStyles';`) to pick
+ * up the same design tokens and primitives. Change a token here and the whole
+ * command center follows.
+ */
+
+:host {
+  /* --- Salesforce Lightning blues --- */
+  --acc-brand: #0176d3;
+  --acc-brand-dark: #014486;
+  --acc-brand-light: #cfe6fb;
+  --acc-brand-wash: #eef4ff;
+  --acc-navy: #032d60;
+  --acc-navy-deep: #021b3d;
+
+  /* --- Status palette (validated against a white surface) ---
+       Warning/critical marks pair with an icon + text label everywhere, and
+       warning TEXT uses the darker step so it clears contrast. */
+  --acc-healthy: #2e844a;
+  --acc-healthy-wash: #ebf7ee;
+  --acc-warning: #fe9339;
+  --acc-warning-text: #dd7a01;
+  --acc-warning-wash: #fef5e9;
+  --acc-critical: #ea001e;
+  --acc-critical-text: #ba0517;
+  --acc-critical-wash: #fef1f1;
+  --acc-info: #0176d3;
+  --acc-info-wash: #eef4ff;
+
+  /* --- Surfaces & ink --- */
+  --acc-surface: #ffffff;
+  --acc-page: #f3f6f9;
+  --acc-track: #e5eaf0;
+  --acc-border: #e5eaf0;
+  --acc-border-strong: #d8dde6;
+  --acc-ink: #181818;
+  --acc-ink-secondary: #444444;
+  --acc-ink-muted: #706e6b;
+
+  /* --- Shape & depth --- */
+  --acc-radius: 8px;
+  --acc-radius-sm: 5px;
+  --acc-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --acc-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --acc-gap: 12px;
+
+  /* --- Typography --- */
+  --acc-font:
+    "Salesforce Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+
+  display: block;
+  font-family: var(--acc-font);
+  color: var(--acc-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+ * Card shell
+ * ========================================================================== */
+
+.acc-card {
+  background: var(--acc-surface);
+  border: 1px solid var(--acc-border);
+  border-radius: var(--acc-radius);
+  box-shadow: var(--acc-shadow);
+  padding: 12px 14px 14px;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.acc-card--flush {
+  padding: 0;
+  overflow: hidden;
+}
+
+.acc-card__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.acc-card__title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--acc-ink);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.acc-card__spacer {
+  flex: 1;
+}
+
+/* Numbered section chip - the "1..13" blue circles from the header row. */
+.acc-chip {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--acc-brand);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* ==========================================================================
+ * Panels - the inset sub-cards (Admin Alerts, Limit Status, ...)
+ * ========================================================================== */
+
+.acc-panel {
+  border: 1px solid var(--acc-border);
+  border-radius: var(--acc-radius-sm);
+  padding: 10px;
+  background: var(--acc-surface);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.acc-panel--critical {
+  background: var(--acc-critical-wash);
+  border-color: #f9d4d4;
+}
+
+.acc-panel__title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--acc-ink-secondary);
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+ * Text primitives
+ * ========================================================================== */
+
+.acc-label {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--acc-ink-muted);
+  line-height: 1.3;
+}
+
+.acc-value {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--acc-ink);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.acc-value--sm {
+  font-size: 14px;
+}
+
+.acc-value--lg {
+  font-size: 22px;
+}
+
+.acc-strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--acc-ink);
+}
+
+.acc-muted {
+  font-size: 10px;
+  color: var(--acc-ink-muted);
+}
+
+.acc-link {
+  font-size: 11px;
+  color: var(--acc-brand);
+  text-decoration: none;
+  font-weight: 400;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+}
+
+.acc-link:hover,
+.acc-link:focus-visible {
+  text-decoration: underline;
+}
+
+/* Numbers in columns align; standalone display numbers stay proportional. */
+.acc-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Text/values the server marked as unavailable read as muted, not broken. */
+.acc-unavailable {
+  color: var(--acc-ink-muted);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+ * Status colour roles
+ * ========================================================================== */
+
+.acc-t-healthy {
+  color: var(--acc-healthy);
+}
+.acc-t-warning {
+  color: var(--acc-warning-text);
+}
+.acc-t-critical {
+  color: var(--acc-critical-text);
+}
+.acc-t-info {
+  color: var(--acc-info);
+}
+
+/* ==========================================================================
+ * Tables
+ * ========================================================================== */
+
+.acc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.acc-table th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--acc-ink-muted);
+  padding: 7px 8px;
+  background: #f7f9fb;
+  border-bottom: 1px solid var(--acc-border);
+  white-space: nowrap;
+}
+
+.acc-table td {
+  padding: 7px 8px;
+  border-bottom: 1px solid #f0f3f7;
+  color: var(--acc-ink-secondary);
+  vertical-align: middle;
+}
+
+.acc-table tr:last-child td {
+  border-bottom: none;
+}
+
+.acc-table tbody tr:hover td {
+  background: #f9fbfd;
+}
+
+.acc-table__num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.acc-table__name {
+  font-weight: 600;
+  color: var(--acc-ink);
+}
+
+/* ==========================================================================
+ * Grid helpers
+ * ========================================================================== */
+
+.acc-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.acc-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.acc-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.acc-grid--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.acc-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==========================================================================
+ * Data Unavailable banner - full-section fallback
+ * ========================================================================== */
+
+.acc-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #f7f9fb;
+  border: 1px dashed var(--acc-border-strong);
+  border-radius: var(--acc-radius-sm);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.acc-banner__title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--acc-ink-secondary);
+  margin: 0 0 2px;
+}
+
+.acc-banner__text {
+  font-size: 10.5px;
+  color: var(--acc-ink-muted);
+  margin: 0;
+}
+
+/* ==========================================================================
+ * Accessibility
+ * ========================================================================== */
+
+.acc-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    --acc-shadow-hover: var(--acc-shadow);
+  }
+}

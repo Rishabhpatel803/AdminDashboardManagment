@@ -1,0 +1,102 @@
+<template>
+  <section class="hero">
+    <svg
+      class="hero__bg"
+      viewBox="0 0 1200 200"
+      preserveAspectRatio="xMidYMax slice"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="accSky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#d8ecfb" />
+          <stop offset="100%" stop-color="#f5fafe" />
+        </linearGradient>
+        <linearGradient id="accPeak" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#bedcf4" />
+          <stop offset="100%" stop-color="#9ec9e9" />
+        </linearGradient>
+      </defs>
+
+      <rect width="1200" height="200" fill="url(#accSky)" />
+
+      <g fill="#ffffff" opacity="0.55">
+        <ellipse cx="210" cy="46" rx="52" ry="16" />
+        <ellipse cx="250" cy="38" rx="34" ry="14" />
+        <ellipse cx="880" cy="38" rx="46" ry="14" />
+        <ellipse cx="915" cy="32" rx="30" ry="11" />
+      </g>
+
+      <path
+        d="M0 150 L120 96 L210 138 L320 72 L430 140 L520 110 L640 160 L760 104 L880 150 L980 118 L1090 156 L1200 120 L1200 200 L0 200 Z"
+        fill="#cde5f8"
+      />
+
+      <g fill="#ffffff" opacity="0.8">
+        <path d="M320 72 L350 94 L334 97 L356 114 L284 114 Z" />
+        <path d="M760 104 L784 122 L771 125 L789 138 L731 138 Z" />
+      </g>
+
+      <path
+        d="M0 176 L150 130 L260 168 L380 118 L500 172 L620 140 L740 178 L860 138 L1000 176 L1120 146 L1200 172 L1200 200 L0 200 Z"
+        fill="url(#accPeak)"
+        opacity="0.9"
+      />
+
+      <g fill="#5f9dc9" opacity="0.5">
+        <polygon points="52,186 62,152 72,186" />
+        <polygon points="76,188 84,162 92,188" />
+        <polygon points="1108,184 1118,150 1128,184" />
+        <polygon points="1132,188 1140,160 1148,188" />
+        <polygon points="1160,185 1170,154 1180,185" />
+      </g>
+    </svg>
+
+    <div class="hero__content">
+      <div class="hero__lead">
+        <span class="hero__mark">
+          <lightning-icon
+            icon-name="utility:home"
+            size="small"
+            alternative-text="Home"
+            class="hero__mark-icon"
+          ></lightning-icon>
+        </span>
+        <div class="hero__titles">
+          <h1 class="hero__title">Salesforce Admin Command Center</h1>
+          <p class="hero__subtitle">{subtitle}</p>
+        </div>
+      </div>
+
+      <div class="hero__info">
+        <div class="hero__info-row">
+          <template for:each={infoBlocks} for:item="block">
+            <div key={block.id} class="hero__block" title={block.tooltip}>
+              <span class="hero__block-label">{block.label}</span>
+              <template lwc:if={block.status}>
+                <c-acc-status-indicator
+                  status={block.status}
+                  label={block.value}
+                  variant="dot"
+                  class="hero__block-status"
+                ></c-acc-status-indicator>
+              </template>
+              <template lwc:else>
+                <span class="hero__block-value">{block.value}</span>
+              </template>
+            </div>
+          </template>
+        </div>
+        <div class="hero__stamp">
+          <span class="hero__updated">{lastUpdatedLabel}</span>
+          <template lwc:if={isStale}>
+            <c-acc-status-indicator
+              status="warning"
+              label="Data may be outdated"
+              variant="icon"
+            ></c-acc-status-indicator>
+          </template>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>

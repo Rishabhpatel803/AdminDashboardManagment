@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>false</isExposed>
+    <masterLabel>Section 8 - Deployment and DevOps</masterLabel>
+    <description
+  >Recent deployments with change set, pipeline and release summary.</description>
+</LightningComponentBundle>

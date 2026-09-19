@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>false</isExposed>
+    <masterLabel>Admin Command Center Meter</masterLabel>
+    <description
+  >Horizontal progress bar whose fill width equals the computed usage percentage.</description>
+</LightningComponentBundle>

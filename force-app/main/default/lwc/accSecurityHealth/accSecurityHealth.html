@@ -1,0 +1,75 @@
+<template>
+  <c-acc-card number="4" card-title="Security &amp; Access Health">
+    <div class="sec">
+      <div class="sec__metrics">
+        <template for:each={inventory} for:item="metric">
+          <div key={metric.id} class="metric" title={metric.tooltip}>
+            <div class="metric__head">
+              <lightning-icon
+                icon-name={metric.icon}
+                size="xx-small"
+                alternative-text={metric.label}
+                class="metric__icon"
+              ></lightning-icon>
+              <span class="metric__label">{metric.label}</span>
+            </div>
+            <span class={metric.valueClass}>{metric.value}</span>
+          </div>
+        </template>
+      </div>
+
+      <div class="sec__panels">
+        <div class="acc-panel">
+          <p class="acc-panel__title">Security Alerts</p>
+          <ul class="sec__alerts">
+            <template for:each={alerts} for:item="alert">
+              <li key={alert.id} class="sec__alert">
+                <lightning-icon
+                  icon-name="utility:warning"
+                  size="xx-small"
+                  alternative-text="Alert"
+                  class="sec__alert-icon"
+                ></lightning-icon>
+                <span class="sec__alert-label">{alert.label}</span>
+                <span class={alert.countClass}>{alert.value}</span>
+              </li>
+            </template>
+          </ul>
+        </div>
+
+        <div class="acc-panel">
+          <p class="acc-panel__title">Access Health</p>
+          <div class="sec__health">
+            <c-acc-donut
+              value={donut.value}
+              value-label={donut.label}
+              sublabel={donut.sublabel}
+              status={donut.status}
+              tooltip={donut.tooltip}
+              size="96"
+              thickness="13"
+            ></c-acc-donut>
+
+            <ul class="sec__subsystems">
+              <template for:each={subsystems} for:item="item">
+                <li key={item.id} class="sec__subsystem" title={item.tooltip}>
+                  <c-acc-status-indicator
+                    status={item.status}
+                    label={item.label}
+                    variant="icon"
+                    icon-name="utility:check"
+                  ></c-acc-status-indicator>
+                  <c-acc-status-indicator
+                    status={item.status}
+                    label={item.value}
+                    variant="pill"
+                  ></c-acc-status-indicator>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </c-acc-card>
+</template>

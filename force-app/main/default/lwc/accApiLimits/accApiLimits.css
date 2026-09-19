@@ -1,0 +1,45 @@
+@import "c/accStyles";
+
+.lim {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.lim__meters {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.lim__status {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.lim__status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f3f7;
+}
+
+.lim__status-row:last-child {
+  border-bottom: none;
+}
+
+.lim__status-value {
+  font-size: 10px;
+  color: var(--acc-ink-muted);
+  flex: 0 0 auto;
+}
+
+@media (max-width: 700px) {
+  .lim {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

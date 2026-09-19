@@ -1,0 +1,22 @@
+<template>
+  <c-acc-card number="13" card-title="Quick Admin Actions">
+    <div class="qa">
+      <template for:each={actions} for:item="action">
+        <a
+          key={action.id}
+          href={action.target}
+          class="qa__tile"
+          title={action.label}
+        >
+          <lightning-icon
+            icon-name={action.icon}
+            size="small"
+            alternative-text={action.label}
+            style={action.iconStyle}
+          ></lightning-icon>
+          <span class="qa__label">{action.label}</span>
+        </a>
+      </template>
+    </div>
+  </c-acc-card>
+</template>

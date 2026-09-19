@@ -1,0 +1,28 @@
+<template>
+  <c-acc-card number="8" card-title="Deployment &amp; DevOps">
+    <div class="dep">
+      <template lwc:if={isUnavailable}>
+        <div class="acc-banner">
+          <lightning-icon
+            icon-name="utility:info"
+            size="x-small"
+            alternative-text="Data Unavailable"
+          ></lightning-icon>
+          <div>
+            <p class="acc-banner__title">Data Unavailable</p>
+            <p class="acc-banner__text">{unavailableReason}</p>
+          </div>
+        </div>
+      </template>
+
+      <div class="dep__footer">
+        <template for:each={footer} for:item="block">
+          <div key={block.id} class="dep__block">
+            <span class="acc-label">{block.label}</span>
+            <span class="dep__block-value acc-unavailable">{block.value}</span>
+          </div>
+        </template>
+      </div>
+    </div>
+  </c-acc-card>
+</template>
